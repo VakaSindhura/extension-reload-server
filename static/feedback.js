@@ -20,10 +20,13 @@ function postData(url = '', data = {}) {
 
 
 function sendFeedback() {
-    var feedback = document.querySelector('body > div.uninstall > section > div:nth-child(2) > textarea').value;
+    var feedback = document.querySelector('body > div.uninstall > section > div:nth-child(2) > textarea');
     var url = window.location.href;
-    postData(`${url}feedback`, { feedback: feedback })
-        .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
+    postData(`${url}feedback`, { feedback: feedback.value })
+        .then(data => {
+            feedback.value = "";
+            alert('succees');
+        }) // JSON-string from `response.json()` call
         .catch(error => console.error(error));
 
 }
